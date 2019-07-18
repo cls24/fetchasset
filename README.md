@@ -1,0 +1,2 @@
+# fetchasset
+fetchasset for cmdb
