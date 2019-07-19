@@ -1,6 +1,6 @@
 mode = "ssh"
 plugins = {
-    "cpu":"cmdb.plugins.cpu.Cpuplugin",
-    "disk":"cmdb.plugins.disk.Diskplugin",
+    "cpu":"src.plugins.cpu.Cpuplugin",
+    "disk":"src.plugins.disk.Diskplugin",
 }
 
