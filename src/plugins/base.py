@@ -1,6 +1,6 @@
 from conf.settings import mode
 
-class BasePlugins():
+class BasePlugins(object):
     def __init__(self):
         self.mode = mode
 
@@ -10,11 +10,10 @@ class BasePlugins():
     def salt(self,cmd):
         return cmd
 
-    def execute(self):
-        if self.mode in {"ssh","salt"}:
-            return getattr(self,self.mode)(self.cmd())
-        else:
-            raise Exception("invaild mode,please check the settings file")
-    def cmd(self):
+    def execute(self,host):
+        # if self.mode in {"ssh","salt"}:
+        return getattr(self,self.mode)(self.cmd(host))
+
+    def cmd(self,host):
         pass
 
