@@ -3,7 +3,7 @@ import salt.client as sc
 
 
 class NicPlugin(base.BasePlugins):
-    def cmd(self,host):
+    def salt(self,host):
         ret = []
         local = sc.LocalClient()
         grains = local.cmd(host, "grains.items")[host]
@@ -14,3 +14,6 @@ class NicPlugin(base.BasePlugins):
             ipv4 = grains['ip4_interfaces'][nic][0]
             ret.append({'name':name,'hwaddr':hwaddr,'ipv4':ipv4})
         return ret
+
+    def ssh(self,host):
+        pass

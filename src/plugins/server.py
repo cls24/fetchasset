@@ -3,7 +3,7 @@ import salt.client as sc
 
 
 class ServerPlugin(base.BasePlugins):
-    def cmd(self,host):
+    def salt(self,host):
         local = sc.LocalClient()
         grains = local.cmd(host, "grains.items")
         server_info = {}
@@ -16,3 +16,6 @@ class ServerPlugin(base.BasePlugins):
             server_info['cpu_cores'] = grains[i]["num_cpus"]
             server_info['cpu_model'] = grains[i]["cpu_model"]
         return server_info
+
+    def ssh(self,host):
+        pass

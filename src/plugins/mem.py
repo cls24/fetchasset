@@ -3,7 +3,7 @@ import salt.client as sc
 import re
 
 class MemPlugin(base.BasePlugins):
-    def cmd(self,host):
+    def salt(self,host):
         local = sc.LocalClient()
         ret = local.cmd(host, 'cmd.run', ['dmidecode |grep -A16 "Memory Device$"'])
         mems = []
@@ -18,3 +18,6 @@ class MemPlugin(base.BasePlugins):
             tmp['capacity'] = dic['Size']
             mems.append(tmp)
         return mems
+
+    def ssh(self,host):
+        pass

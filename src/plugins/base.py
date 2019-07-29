@@ -1,19 +1,21 @@
 from conf.settings import mode
+from lib.response import BaseResponse
 
 class BasePlugins(object):
     def __init__(self):
         self.mode = mode
 
-    def ssh(self,cmd):
-        return cmd
+    def ssh(self,host):
+        raise Exception('you must implement this method')
 
-    def salt(self,cmd):
-        return cmd
+    def salt(self,host):
+        raise Exception('you must implement this method')
 
     def execute(self,host):
-        # if self.mode in {"ssh","salt"}:
-        return getattr(self,self.mode)(self.cmd(host))
-
-    def cmd(self,host):
-        pass
-
+        resp = BaseResponse()
+        try:
+            resp.data = getattr(self,self.mode)(host)
+        except Exception as e:
+            resp.status = False
+            resp.error = e
+        return resp

@@ -3,8 +3,9 @@ from src import client
 
 def run():
     if settings.mode=='ssh':
-        client.SSHClient().process()
+        cli = client.SSHClient()
     elif settings.mode=='salt':
-        client.SaltClient().process()
+        cli = client.SaltClient()
     else:
         raise Exception("invaild mode,please check the settings file")
+    cli.process()
