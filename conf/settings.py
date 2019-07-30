@@ -5,3 +5,7 @@ plugins = {
     "server":"src.plugins.server.ServerPlugin",
 }
 
+mykey = 'zjkassj32jk3iosakjas8928173kklas2'
+url = 'http://127.0.0.1:8000/api/'
+
+logpath = './logs'
