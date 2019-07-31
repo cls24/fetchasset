@@ -9,6 +9,7 @@ import hashlib,time,json
 from conf.settings import mykey,url
 from lib import logger
 from lib.serailize import JsonCustomerEncoder
+import salt.client as sc
 
 class BaseClient(object):
 
@@ -30,7 +31,10 @@ class BaseClient(object):
         # return res
 
     def getAsset(self):
-        return ['192.168.0.170.wins.com','192.168.0.180']
+        local = sc.LocalClient()
+        ret = local.cmd('*', 'test.ping')
+        hosts = [k for k,v in ret.items() if v]
+        return hosts
 
     def sendData(self,url,data,pool=5):
         pool = Pool(pool)
