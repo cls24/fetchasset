@@ -36,6 +36,7 @@ class BaseClient(object):
         hosts = [k for k,v in ret.items() if v]
         return hosts
 
+
     def sendData(self,url,data,pool=5):
         pool = Pool(pool)
         gs = [pool.spawn(self.postData,url,data[h]) for h in data.keys()]

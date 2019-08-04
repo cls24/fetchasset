@@ -1,7 +1,6 @@
 from src.plugins import base
 import salt.client as sc
 import re
-
 class MemPlugin(base.BasePlugins):
     def salt(self,host):
         local = sc.LocalClient()
@@ -15,7 +14,7 @@ class MemPlugin(base.BasePlugins):
             tmp['sn'] = dic['Serial Number']
             tmp['slot'] = dic['Locator']
             tmp['vendor'] = dic['Manufacturer']
-            tmp['capacity'] = dic['Size']
+            tmp['capacity'] = float(dic['Size'].replace('MB','').strip())
             mems.append(tmp)
         return mems
 
